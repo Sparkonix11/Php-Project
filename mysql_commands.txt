@@ -1,0 +1,25 @@
+-- Create Customers Table
+CREATE TABLE customers (
+    customer_number INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone_number VARCHAR(15) NOT NULL
+);
+
+-- Create Requests Table
+CREATE TABLE requests (
+    request_number INT AUTO_INCREMENT PRIMARY KEY,
+    customer_number INT NOT NULL,
+    request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    item_description VARCHAR(255) NOT NULL,
+    weight INT NOT NULL,
+    pickup_address VARCHAR(255) NOT NULL,
+    pickup_suburb VARCHAR(100) NOT NULL,
+    preferred_pickup_date DATETIME NOT NULL,
+    receiver_name VARCHAR(100) NOT NULL,
+    delivery_address VARCHAR(255) NOT NULL,
+    delivery_suburb VARCHAR(100) NOT NULL,
+    delivery_state VARCHAR(50) NOT NULL,
+    FOREIGN KEY (customer_number) REFERENCES customers(customer_number)
+);
